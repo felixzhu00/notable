@@ -14,13 +14,15 @@ function createWindow(): void {
     //
     center: true,
     title: 'Erugo',
+    transparent: true, //windows
+    backgroundMaterial: 'acrylic',
     //
     //Mac Settings
-    // vibrancy: 'under-window',
-    // visualEffectState: 'active',
+    vibrancy: 'under-window',
+    visualEffectState: 'active',
     // frame: false,
     // titleBarStyle: 'hidden',
-    // trafficLightPosition: { x: 15, y: 10 },
+    trafficLightPosition: { x: 15, y: 10 },
     //
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
