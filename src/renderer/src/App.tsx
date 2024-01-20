@@ -2,6 +2,7 @@ import {
   ActionButtonsRow,
   Content,
   DraggableTopBar,
+  FloatingNoteTitle,
   NotePreviewList,
   RootLayout,
   SideBar
@@ -18,6 +19,7 @@ const App = () => {
           <NotePreviewList className="mt-3 space-y-1" />
         </SideBar>
         <Content className="border-l bg-zinc-900/90 border-l-white/20">
+          <FloatingNoteTitle className="pt-2" />
           <MarkdownEditor />
         </Content>
       </RootLayout>
