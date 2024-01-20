@@ -15,7 +15,7 @@ function createWindow(): void {
     center: true,
     title: 'Erugo',
     transparent: true, //windows
-    backgroundMaterial: 'acrylic',
+    // backgroundMaterial: 'acrylic',
     //
     //Mac Settings
     vibrancy: 'under-window',
@@ -31,6 +31,7 @@ function createWindow(): void {
     }
   })
 
+  // mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
