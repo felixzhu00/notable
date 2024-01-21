@@ -1,7 +1,9 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { BrowserWindow, app, shell } from 'electron'
+import { GetNotes, ReadNote, WriteNote } from '@shared/types'
+import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
+import { getNotes, readNote, writeNote } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -30,6 +32,7 @@ function createWindow(): void {
       contextIsolation: true
     }
   })
+  console.log(join(__dirname, '../preload/index.js'), 'Namer')
 
   // mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
@@ -63,6 +66,10 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
+
+  ipcMain.handle(`getNotes`, (_, ...args: Parameters<GetNotes>) => getNotes(...args))
+  ipcMain.handle(`readNote`, (_, ...args: Parameters<ReadNote>) => readNote(...args))
+  ipcMain.handle(`writeNote`, (_, ...args: Parameters<WriteNote>) => writeNote(...args))
 
   createWindow()
 

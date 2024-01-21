@@ -1,5 +1,5 @@
 import { useNotesList } from '@renderer/hooks/useNoteList'
-import { notesMock } from '@renderer/store/mocks'
+import { isEmpty } from 'lodash'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { NotePreview } from './NotePreview'
@@ -11,7 +11,9 @@ export type NotePreviewListProps = ComponentProps<'ul'> & {
 export const NotePreviewList = ({ onSelect, className, ...props }: NotePreviewListProps) => {
   const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({ onSelect })
 
-  if (notes.length === 0) {
+  if (!notes) return null
+
+  if (isEmpty(notes)) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
         <span>No Notes Yet!</span>
@@ -21,7 +23,7 @@ export const NotePreviewList = ({ onSelect, className, ...props }: NotePreviewLi
 
   return (
     <ul {...props}>
-      {notesMock.map((note, index) => (
+      {notes.map((note, index) => (
         <NotePreview
           key={note.title + note.lastEditTime}
           {...note}

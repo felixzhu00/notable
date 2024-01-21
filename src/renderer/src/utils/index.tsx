@@ -5,7 +5,7 @@ export const cn = (...args: ClassValue[]) => {
   return twMerge(clsx(...args))
 }
 
-const dateFormatter = new Intl.DateTimeFormat(navigator.language, {
+const dateFormatter = new Intl.DateTimeFormat(window.context.locale, {
   dateStyle: 'short',
   timeStyle: 'short',
   timeZone: 'UTC'
